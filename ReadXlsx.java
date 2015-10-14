@@ -616,20 +616,23 @@ public class ReadXlsx
 
 		frame.setSize(300, 150);*/
 		int fill=0;	
-			for(int start=0;start<count;start++)
+		System.out.println(typeOfSql[fill]+" ");
+		System.out.println(sqlIdentifier[fill]+" ");
+			for(int start=1;start<count;start++)
 			{
 				
-				for(int repeat=0;repeat<increment[start];repeat++)
+				for(int repeat=1;repeat<increment[start];repeat++)
 				{
-				System.out.println(typeOfSql[fill]+" ");
-				System.out.println(sqlIdentifier[fill]+" ");
+				System.out.println(typeOfSql[repeat]+" ");
+				System.out.println(sqlIdentifier[repeat]+" ");
 				fill++;
 				}
 			}
 		 
 		        for (int column = 0; column < actualRows; column++) {
-		        	
-		            System.out.print(targetSchema[column] + " ");
+		        	System.out.println(typeOfSql[column]+" ");
+					System.out.println(sqlIdentifier[column]+" ");
+		        	System.out.print(targetSchema[column] + " ");
 		            System.out.print(targetTable[column] + " ");
 		            System.out.print(targetColumn[column] + " ");
 		            System.out.print(sourceSchema[column] + " ");
