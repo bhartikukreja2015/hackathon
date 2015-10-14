@@ -37,53 +37,7 @@ public class ReadXlsx
 	static int count=0;
 	static int increment[];
 	
-	/*public static void moveTypeOfSql(int i)
-
-	{
-		int g=0;
-
-		while (typeOfSql[g]!=null)
-
-		{
-			g++;
-		}
-
-		for(int j=g;j>=i;j--)
-
-		{
-			typeOfSql[j+1]=typeOfSql[j];
-
-		}
-
-		typeOfSql[i+1]=typeOfSql[i];
-
-	}
-
-	public static void movesqlIdentifier(int i)
-
-	{
-		int g=0;
-
-		while (sqlIdentifier[g]!=null)
-
-		{
-			g++;
-		}
-
-		for(int j=g;j>=i;j--)
-
-		{
-			sqlIdentifier[j+1]=sqlIdentifier[j];
-
-		}
-
-		sqlIdentifier[i+1]=sqlIdentifier[i];
-
-	}
-
-*/
-
-
+	
 
 	public static void getInfo(String path) 
 	{
@@ -349,6 +303,12 @@ public class ReadXlsx
 											}
 		
 											System.out.println(sequences[j+spaces]+"after where next sequence is this.");
+											if(sequences[j+spaces].trim().contentEquals("JOIN"))
+											{
+												
+												transformation[i]="JOIN";
+												
+											}
 										}
 										
 										}
@@ -642,7 +602,36 @@ public class ReadXlsx
 		            System.out.println();
 		        }
 		        
-		   
+		        try {
+		            String filename = "D:/resultt.xls" ;
+		            HSSFWorkbook workbook = new HSSFWorkbook();
+		            HSSFSheet sheet = workbook.createSheet("FirstSheet");  
+		            
+		            for (int column = 0; column < actualRows; column++) 
+		            {
+		            HSSFRow rowStartPointer = sheet.createRow((short)column);
+		            rowStartPointer.createCell((short)0).setCellValue(typeOfSql[column]);
+		            rowStartPointer.createCell((short)1).setCellValue(sqlIdentifier[column]);
+		            rowStartPointer.createCell((short)2).setCellValue(targetSchema[column]);
+		            rowStartPointer.createCell((short)3).setCellValue(targetTable[column]);
+		            rowStartPointer.createCell((short)4).setCellValue(targetColumn[column]);
+		            rowStartPointer.createCell((short)5).setCellValue(sourceSchema[column]);
+		            rowStartPointer.createCell((short)6).setCellValue(sourceTable[column]);
+		            rowStartPointer.createCell((short)7).setCellValue(sourceColumn[column]);
+		            rowStartPointer.createCell((short)8).setCellValue(transformation[column]);
+		           
+		            
+		            }
+		           
+
+		            FileOutputStream fileOut = new FileOutputStream(filename);
+		            workbook.write(fileOut);
+		            fileOut.close();
+		            System.out.println("success generation");
+
+		        } catch ( Exception ex ) {
+		            System.out.println(ex);
+		        }
 		
 
 	}//end of main method
